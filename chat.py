@@ -6,14 +6,14 @@ from models import UserInput
 
 from models import UserModel
 
-router = APIRouter()
+router = APIRouter(prefix="/chat",tags=["chat"])
 
 router.mount("/chat_page", StaticFiles(directory="chat_page"), name="style")
 
 templates_chat = Jinja2Templates(directory="chat_page")
 
 
-@router.post("/login")
+@router.post("")
 async def request_gpt(request: Request, creds: UserModel = Form()):
     if creds.username == 'denis' and creds.password == "123":
         return templates_chat.TemplateResponse("index.html", {"request": request})
@@ -21,7 +21,7 @@ async def request_gpt(request: Request, creds: UserModel = Form()):
 
 
 
-@router.post('/login/ask')
+@router.post('/ask')
 async def request_gpt(us_input: UserInput) -> dict:
     print(us_input.user_input)
     return {'msg': await gpt(us_input.user_input)}

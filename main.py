@@ -16,7 +16,7 @@ app.mount("/auth_page", StaticFiles(directory="auth_page"), name="style")
 templates_auth = Jinja2Templates(directory="auth_page")
 
 
-@app.get("/")
+@app.get("/", tags=['main'])
 async def read_root(request: Request):
     return templates_auth.TemplateResponse("index.html", {"request": request})
 

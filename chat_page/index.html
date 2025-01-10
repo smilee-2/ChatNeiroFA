@@ -97,7 +97,7 @@ button:hover {
             chatBox.innerHTML += `<div class="user-message">${userInput}</div>`;
             document.getElementById('user-input').value = '';
 
-            fetch('/login/ask', {
+            fetch('/chat/ask', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
