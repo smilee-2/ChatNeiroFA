@@ -5,7 +5,7 @@ import g4f.debug
 import asyncio
 
 
-async def gpt(msg):
+async def gpts(msg):
     g4f.debug.logging = True
     g4f.debug.version_check = False
 

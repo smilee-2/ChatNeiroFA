@@ -3,6 +3,7 @@ from fastapi import FastAPI, Request, Form, HTTPException, status
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from authconfig import security
+from core.dbhelper import database
 
 from chat import router as router_chat
 
