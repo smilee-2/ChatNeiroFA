@@ -9,5 +9,7 @@ class BaseSchemas(DeclarativeBase):
 
 # Класс для создания пользователей
 class UserSchemas(BaseSchemas):
+    __tablename__ = "Users"
+
     username: Mapped[str] = mapped_column(nullable=False)
     password: Mapped[str] = mapped_column(nullable=False)
