@@ -3,6 +3,8 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from gpt import gpts
 from models import UserInput, UserModel
+from authconfig import security
+
 
 router = APIRouter(prefix="/chat",tags=["chat"])
 
@@ -12,7 +14,7 @@ templates_chat = Jinja2Templates(directory="chat_page")
 
 
 @router.post("")
-async def auth_page(request: Request, creds: UserModel = Form()):
+async def chat_page(request: Request, creds: UserModel = Form()):
     if creds.username == 'denis' and creds.password == "123":
         return templates_chat.TemplateResponse("index.html", {"request": request})
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect login or password")
