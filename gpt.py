@@ -6,10 +6,11 @@ import asyncio
 
 
 async def gpts(msg):
+
     g4f.debug.logging = True
     g4f.debug.version_check = False
 
-    print(msg)
+
     client = AsyncClient(
         provider=RetryProvider([Blackbox, GizAI, DDG, Mhystical, DarkAI], shuffle=False)
     )
@@ -22,6 +23,6 @@ async def gpts(msg):
             }
         ]
     )
-    print(response.choices[0].message.content)
+
     return response.choices[0].message.content
 

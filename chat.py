@@ -27,5 +27,4 @@ async def chat_page(request: Request, creds: UserModel = Form(), session: AsyncS
 
 @router.post('/ask')
 async def request_gpt(us_input: UserInput) -> dict:
-    print(us_input.user_input)
     return {'msg': await gpts(us_input.user_input)}
