@@ -5,7 +5,7 @@ from .dbhelper import database
 from .schemas import UserSchemas
 from .crud import get_user
 
-
+# Вернет пользователя по id
 async def user_by_id(
     user_id: Annotated[int, Path],
     session: AsyncSession = Depends(database.session_depend)

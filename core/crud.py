@@ -10,7 +10,21 @@ async def get_user(session: AsyncSession, user_id: int) -> UserSchemas | None:
     return await session.get(UserSchemas, user_id)
 
 
-# Функция добавления юзера в БД
+# Проверяет, существует ли пользователь в базе данных по имени пользователя и паролю
+async def user_exists_by_name(session: AsyncSession, username: str, password: str) -> bool:
+    stmt = select(UserSchemas).where(UserSchemas.username == username, UserSchemas.password == password)
+    result = await session.execute(stmt)
+    return result.scalars().first() is not None
+
+
+# # Проверяет, существует ли пароль пользователя в базе данных по имени пользователя
+# async def user_exists_by_password(session: AsyncSession, password: str) -> bool:
+#     stmt = select(UserSchemas).where(UserSchemas.password == password)
+#     result = await session.execute(stmt)
+#     return result.scalars().first() is not None
+
+
+# Функция добавления пользователя в БД
 async def create_user(session: AsyncSession, user_input: UserModel) -> UserSchemas:
     user = UserSchemas(**user_input.model_dump())
     session.add(user)
@@ -18,7 +32,7 @@ async def create_user(session: AsyncSession, user_input: UserModel) -> UserSchem
     return user
 
 
-# Функция удаления юзера
+# Функция удаления пользователя
 async def delete_user(
         session: AsyncSession,
         user: UserSchemas,

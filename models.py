@@ -9,7 +9,7 @@ class UserModel(Base):
     username: str | EmailStr
     password: str
 
-# Класс для валидации пароля
+# Класс для валидации запроса gpt
 class UserInput(Base):
     user_input: str
 
