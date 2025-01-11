@@ -1,5 +1,4 @@
 from pydantic import BaseModel, EmailStr
-from typing import Union
 
 #Базовый класс
 class Base(BaseModel):
@@ -7,7 +6,7 @@ class Base(BaseModel):
 
 # Класс для валидации пользователей
 class UserModel(Base):
-    username: Union[str, EmailStr]
+    username: str | EmailStr
     password: str
 
 # Класс для валидации пароля

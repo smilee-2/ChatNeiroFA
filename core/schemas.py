@@ -7,7 +7,7 @@ class BaseSchemas(DeclarativeBase):
     id: Mapped[int] = mapped_column(primary_key=True)
 
 
-# Класс для создания пользователей
+# Класс для создания таблицы пользователей
 class UserSchemas(BaseSchemas):
     __tablename__ = "Users"
 
