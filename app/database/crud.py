@@ -1,8 +1,7 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.engine import Result
-from models import UserModel
-from .schemas import UserSchemas
+from app.endpoints.models import UserModel
+from app.database.schemas import UserSchemas
 
 
 # Функция получения пользователя по id

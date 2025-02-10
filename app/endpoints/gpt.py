@@ -15,11 +15,11 @@ async def gpts(msg):
         provider=RetryProvider([Blackbox, GizAI, DDG, Mhystical, DarkAI], shuffle=False)
     )
     response = await client.chat.completions.create(
-        model="",
+        model='',
         messages=[
             {
-                "role": "user",
-                "content": f"{msg}"
+                'role': 'user',
+                'content': f'{msg}'
             }
         ]
     )
