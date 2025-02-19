@@ -1,6 +1,8 @@
 from typing import Annotated
+
 from fastapi import Path, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from app.database.dbhelper import database
 from app.database.schemas import UserSchemas
 from app.database.crud import get_user

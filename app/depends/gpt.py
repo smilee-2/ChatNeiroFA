@@ -1,9 +1,7 @@
 from g4f.client import AsyncClient
 from g4f.providers.retry_provider import RetryProvider
-from g4f.Provider import OpenaiChat, Gemini, DDG, Blackbox, GizAI, Mhystical, DarkAI
+from g4f.Provider import DDG, Blackbox, GizAI, Mhystical, DarkAI
 import g4f.debug
-import asyncio
-
 
 async def gpts(msg):
 

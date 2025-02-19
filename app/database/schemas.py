@@ -11,5 +11,5 @@ class BaseSchemas(DeclarativeBase):
 class UserSchemas(BaseSchemas):
     __tablename__ = "Users"
 
-    username: Mapped[str] = mapped_column(nullable=False)
+    username: Mapped[str] = mapped_column(nullable=False, unique=True)
     password: Mapped[str] = mapped_column(nullable=False)
