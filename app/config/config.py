@@ -13,9 +13,9 @@ class Setting(BaseSettings):
     database_url: str = f"sqlite+aiosqlite:///{BASE_DIR}/database/database.db"
     database_echo: bool = False
 
-    SECRET_KEY = os.getenv('SECRET_KEY')
-    ALGORITHM = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES = 30
+    SECRET_KEY: str = os.getenv('SECRET_KEY')
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
 
 setting = Setting()

@@ -1,7 +1,7 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.endpoints.models import UserModel
+from app.api.models import UserModel
 from app.database.schemas import UserSchemas
 from app.config.config import session_maker
 
