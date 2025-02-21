@@ -14,6 +14,7 @@ from app.api import router_chat, router_auth, router_users
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     async with engine.begin() as connect:
+        # await connect.run_sync(BaseSchemas.metadata.drop_all)
         await connect.run_sync(BaseSchemas.metadata.create_all)
     yield
 
@@ -30,8 +31,8 @@ app.mount('/auth_page', StaticFiles(directory=f'{BASE_DIR}/auth_page'), name='st
 templates_auth = Jinja2Templates(directory=f'{BASE_DIR}/auth_page')
 
 
-@app.get('/', tags=['main'])
-async def auth_page(request: Request):
+@app.get('/', tags=['Main'])
+def login_page(request: Request):
     return templates_auth.TemplateResponse('index.html', {'request': request})
 
 

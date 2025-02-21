@@ -7,22 +7,21 @@ from fastapi.security import OAuth2PasswordRequestForm
 from app.config.config import setting
 from app.database import crud
 from app.api.models import UserModel, Token
-from app.depends.depends import verify_password, get_password_hash
+from app.depends.depends import verify_password, get_password_hash, create_access_token
 
-router = APIRouter(prefix='/auth', tags=['auth'])
-
-
+router = APIRouter(prefix='/auth', tags=['Auth'])
 
 
-
-@router.post('/register', tags=['main'])
-async def register_new_user(user: UserModel):
+@router.post('/register')
+async def register_new_user(user: UserModel = Depends()):
+    hashed_password = get_password_hash(user.password)
+    user.password = hashed_password
     return await crud.create_user(user_input=user)
 
 
 @router.post("/token")
 async def login_for_access_token(
-    form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
+        form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
 ) -> Token:
     user = await crud.get_user_by_name(form_data.username)
     if not user:

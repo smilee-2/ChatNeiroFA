@@ -13,3 +13,4 @@ class UserSchemas(BaseSchemas):
 
     username: Mapped[str] = mapped_column(nullable=False, unique=True)
     password: Mapped[str] = mapped_column(nullable=False)
+    disabled: Mapped[bool] = mapped_column(nullable=False)

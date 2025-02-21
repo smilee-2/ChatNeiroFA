@@ -1,5 +1,8 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+import asyncio
+
+from sqlalchemy.orm import defer
 
 from app.api.models import UserModel
 from app.database.schemas import UserSchemas
@@ -11,7 +14,7 @@ async def get_user(user_id: int) -> UserSchemas | None:
         return await session.get(UserSchemas, user_id)
 
 
-# Проверяет, существует ли пользователь в базе данных по имени пользователя и паролю
+# Проверяет, существует ли пользователь в базе данных по имени пользователя
 async def get_user_by_name(username: str) -> UserSchemas:
     async with session_maker.begin() as session:
         stmt = select(UserSchemas).where(UserSchemas.username == username)
@@ -29,7 +32,10 @@ async def create_user(user_input: UserModel) -> UserSchemas:
 
 
 # Функция удаления пользователя
-async def delete_user(user: UserSchemas) -> None:
+async def delete_user(user_model: UserModel) -> None:
     async with session_maker.begin() as session:
+        user = UserSchemas(**user_model.model_dump())
         await session.delete(user)
         await session.commit()
+
+

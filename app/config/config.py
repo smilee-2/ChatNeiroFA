@@ -20,4 +20,4 @@ class Setting(BaseSettings):
 
 setting = Setting()
 engine = create_async_engine(url=setting.database_url, echo=setting.database_echo)
-session_maker = async_sessionmaker(engine)
+session_maker = async_sessionmaker(engine, expire_on_commit=False)

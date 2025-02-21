@@ -9,7 +9,7 @@ class Base(BaseModel):
 # Класс для валидации пользователей
 class UserModel(Base):
     username: str | EmailStr
-    hashed_password: str
+    password: str
     disabled: bool | None = None
 
 
